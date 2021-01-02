@@ -1,0 +1,39 @@
+<div class="card">
+<div class="card-header">
+  Member Registration
+</div>
+<div class="card-body">
+<form [formGroup]="memberReg" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-4 form-group">
+      <label for="appDate">Application Date</label>
+      <input type="date" class="form-control" placeholder="dd-MM-yyyy">
+    </div>
+    <div class="col-4 form-group">
+      <label for="memberCode">Member Code</label>
+      <input type="text" class="form-control" placeholder="Member Code">
+    </div>
+    <div class="col-4 form-group">
+      <label for="memberNameen">Name [EN]</label>
+      <input type="text" class="form-control" placeholder="Member Name [EN]">
+    </div>
+    <div class="col-4 form-group">
+      <label for="memberNamebn">Name [BN]</label>
+      <input type="text" class="form-control" placeholder="Member Name [BN]">
+    </div>
+    <div class="col-4 form-group">
+      <label for="fatherName">Father Name</label>
+      <input type="text" class="form-control" placeholder="Father Name">
+    </div>
+    <div class="col-4 form-group">
+      <label for="motherName">Mother Name</label>
+      <input type="text" class="form-control" placeholder="Mother Name">
+    </div>
+    <div class="col-12 form-group">
+      <button type="submit" class="btn btn-primary mr-2">Save</button>
+      <button type="reset" class="btn btn-primary">New</button>
+    </div>
+  </div>
+</form>
+</div>
+</div>

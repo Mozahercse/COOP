@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    <a class="btn btn-primary" routerLink="/Registration">Add</a>
+  </div>
+<div class="card-body">
+  <div class="row">
+    <div *ngFor="let item of Members" class="col-sm-3 p-3">
+      <app-Member-component [Member]="item"></app-Member-component>
+    </div>
+  </div>
+</div>
+</div>
+
