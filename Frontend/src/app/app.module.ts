@@ -9,12 +9,14 @@ import { NavbarComponent } from './Navbar/Navbar.component';
 import{MemberComponentComponent}from'./MemberInfo/Member-component/Member-component.component';
 import{MemberListComponentComponent}from'./MemberInfo/MemberList-component/MemberList-component.component';
 import{MemberService}from'./Services/Member.Service';
+import {RegistrationComponent} from'./MemberInfo/Registration/Registration/Registration.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     MemberComponentComponent,
     MemberListComponentComponent,
+    RegistrationComponent,
     NavbarComponent
    ],
   imports: [
