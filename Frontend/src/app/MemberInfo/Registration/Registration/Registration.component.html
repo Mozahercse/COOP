@@ -3,198 +3,331 @@
   Member Registration
 </div>
 <div class="card-body">
+
 <form [formGroup]="frmRegistration" (submit)="onSubmit()">
-  <label class="bold h6 title">Application Information </label><br>
-  <div class="row">
-    <div class="col-4 form-group">
-      <label for="appDate">Application Date<span class="text-danger">*</span></label>
-      <input type="date" class="form-control" placeholder="dd-MM-yyyy" formControlName="appDate">
-      <span *ngIf="!frmRegistration.get('appDate').valid && frmRegistration.get('appDate').touched" class="text-danger">Invalide date</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="memberCode">Member Code<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" placeholder="Member Code" formControlName="memberCode">
-      <span *ngIf="!frmRegistration.get('memberCode').valid && frmRegistration.get('memberCode').touched" class="text-danger">Invalide member code</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="appFee">Fees<span class="text-danger">*</span></label>
-      <input type="number" class="form-control" min="0" step="50" formControlName="appFee">
-      <span *ngIf="!frmRegistration.get('appFee').valid && frmRegistration.get('appFee').touched" class="text-danger">Invalide fee</span>
-    </div>
-  </div>
-  <label class="bold h6 title">Personel Information</label><br>
-<div class="row">
-    <div class="col-4 form-group">
-      <label for="memberNameen">Name [EN]<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" placeholder="Member Name [EN]" formControlName="memberNameEN">
-      <span *ngIf="!frmRegistration.get('memberNameEN').valid && frmRegistration.get('memberNameEN').touched" class="text-danger">Invalide name</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="memberNamebn">Name [BN]</label>
-      <input type="text" class="form-control" placeholder="Member Name [BN]" formControlName="memberNameBN">
-    </div>
-    <div class="col-4 form-group">
-      <label for="fatherName">Father Name</label>
-      <input type="text" class="form-control" placeholder="Father Name" formControlName="fatherName">
-    </div>
-    <div class="col-4 form-group">
-      <label for="motherName">Mother Name</label>
-      <input type="text" class="form-control" placeholder="Mother Name" formControlName="motherName">
-    </div>
-    <div class="col-4 form-group">
-      <label for="dob">Date Of Birth</label>
-      <input type="date" (change)="ageCalculation()" class="form-control" placeholder="dd-MM-yyyy" formControlName="dob">
-      <span class="badge badge-pill badge-info">{{age}}</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="gender">gender</label><br />
-      <input type="radio" value="Male" formControlName="gender"> Male
-      <input type="radio" value="Female" formControlName="gender"> Female
-    </div>
-    <div class="col-4 form-group">
-      <label for="maritStatus">Maritul Status</label>
-      <select class="form-control" formControlName="maritStatus">
-        <option value="Single">Single</option>
-        <option value="Marride">Marride</option>
-      </select>
-    </div>
-    <div class="col-4 form-group">
-      <label for="spouseName">Spouse Name</label>
-      <input type="text" class="form-control" placeholder="Spouse Name" formControlName="spouseName">
-    </div>
-    <div class="col-4 form-group">
-      <label for="marageDate">Marage Date</label>
-      <input type="date" class="form-control" placeholder="dd-MM-yyyy" formControlName="marageDate">
-    </div>
-    <div class="col-4 form-group">
-      <label for="bloodGroup">Blood Group</label><br />
-      <select class="form-control" formControlName="bloodGroup">
-        <option value="Unknown">--Select--</option>
-        <option value="A+">A positive (A+)</option>
-        <option value="A-">A negative (A-)</option>
-        <option value="B+">B positive (B+)</option>
-        <option value="B-">B negative (B-)</option>
-        <option value="O+">O positive (O+)</option>
-        <option value="O-">O negative (O-)</option>
-        <option value="AB+">AB positive (AB+)</option>
-        <option value="AB-">AB negative (AB-)</option>
-      </select>
-    </div>
-    <div class="col-4 form-group">
-      <label for="mobile">Mobile No<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" formControlName="mobile">
-      <span *ngIf="!frmRegistration.get('mobile').valid && frmRegistration.get('mobile').touched" class="text-danger">Invalide mobile no</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="nid">NID<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" formControlName="nid">
-      <span *ngIf="!frmRegistration.get('nid').valid && frmRegistration.get('nid').touched" class="text-danger">Invalide nid no</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="email">Email<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" formControlName="email">
-      <span *ngIf="!frmRegistration.get('email').valid && frmRegistration.get('email').touched" class="text-danger">Invalide email</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="emergencyPhone">Emergency Phone No</label>
-      <input type="text" class="form-control" formControlName="emergencyPhone">
-    </div>
-    <div class="col-4 form-group">
-      <label for="presenAddress">Present Address</label>
-      <textarea class="form-control" formControlName="presenAddress"></textarea>
-    </div>
-  </div>
-    <label class="bold h6 sub-title">Parmanent Address</label><br>
-    <div class="row">
-      <div class="col-4 form-group">
+  <div class="tab-panel">
+  <tabset class="member-tabset" #staticTabs>
+    <tab heading="Applicant Information">
+      <div class="card" style="height: 544px;">
+        <div class="card-body">
+          <div class="row">
 
-        <label for="presenAddress">Village</label>
-        <input type="text" class="form-control" formControlName="presenAddress">
-      </div>
-      <div class="col-4 form-group">
-        <label for="parmPost">Post Office</label>
-        <input type="text" class="form-control" formControlName="parmPost">
-      </div>
-      <div class="col-4 form-group">
-        <label for="parmPostCode">Post Code</label>
-        <input type="text" class="form-control" formControlName="parmPostCode">
-      </div>
-      <div class="col-4 form-group">
-        <label for="parmPS">Police Station</label>
-        <input type="text" class="form-control" formControlName="parmPS">
-      </div>
-      <div class="col-4 form-group">
-        <label for="parmDist">District</label>
-        <input type="text" class="form-control" formControlName="parmDist">
-      </div>
-      <div class="col-4 form-group">
-        <label for="parmDiv">Division</label>
-        <input type="text" class="form-control" formControlName="parmDiv">
-      </div>
-    </div>
+              <div class="col-4 form-group">
+                <label for="appDate">Application Date<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="dd-MM-yyyy" formControlName="appDate"
+                bsDatepicker [bsConfig]="{ showTodayButton: true,dateInputFormat: 'DD-MM-YYYY' }">
+                <span *ngIf="!frmRegistration.get('appDate').valid && (frmRegistration.get('appDate').touched||formSubmit)" class="text-danger">Invalide date</span>
+              </div>
+              <div class="col-4 form-group">
+                <label for="memberCode">Member Code<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Member Code" formControlName="memberCode">
+                <span *ngIf="!frmRegistration.get('memberCode').valid && (frmRegistration.get('memberCode').touched||formSubmit)" class="text-danger">Invalide member code</span>
+              </div>
+              <div class="col-4 form-group">
+                <label for="appFee">Fees<span class="text-danger">*</span></label>
+                <input type="number" class="form-control" min="0" step="50" formControlName="appFee">
+                <span *ngIf="!frmRegistration.get('appFee').valid && (frmRegistration.get('appFee').touched||formSubmit)" class="text-danger">Invalide fee</span>
+              </div>
 
-  <label class="bold h6 title">Professional Information</label><br>
-    <div class="row">
-    <div class="col-4 form-group">
-      <label for="profession">Profession</label>
-      <input type="text" class="form-control" formControlName="profession">
-    </div>
-    <div class="col-4 form-group">
-      <label for="desig">Designation</label>
-      <input type="text" class="form-control" formControlName="desig">
-    </div>
-    <div class="col-4 form-group">
-      <label for="offcMobile">Office Mobile</label>
-      <input type="text" class="form-control" formControlName="offcMobile">
-    </div>
-    <div class="col-12 form-group">
-      <label for="officAdd">Office Address</label>
-      <textarea class="form-control" formControlName="officAdd"></textarea>
-    </div>
-  </div>
+              <div class="col-4 form-group">
+                <label for="memberNameen">Name [EN]<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Member Name [EN]" formControlName="memberNameEN">
+                <span *ngIf="!frmRegistration.get('memberNameEN').valid && (frmRegistration.get('memberNameEN').touched||formSubmit)" class="text-danger">Invalide name</span>
+              </div>
 
-  <label class="bold h6 title">Reference</label><br>
-    <div class="row">
-    <div class="col-4 form-group">
-      <label for="refName">Name</label>
-      <input type="text" class="form-control" formControlName="refName">
-    </div>
-    <div class="col-4 form-group">
-      <label for="refMobile">Mobile</label>
-      <input type="text" class="form-control" formControlName="refMobile">
-    </div>
-    <div class="col-4 form-group">
-      <label for="refAddress">Address</label>
-      <textarea class="form-control" formControlName="refAddress"></textarea>
-    </div>
-  </div>
 
-  <label class="bold h6 title">Nominee</label><br>
-    <div class="row">
-    <div class="col-4 form-group">
-      <label for="nomName">Name<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" formControlName="nomName">
-      <span *ngIf="!frmRegistration.get('nomName').valid && frmRegistration.get('nomName').touched" class="text-danger">Invalide name</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="nomRel">Relation</label>
-      <input type="text" class="form-control" formControlName="nomRel">
-    </div>
-    <div class="col-4 form-group">
-      <label for="nomNID">NID<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" formControlName="nomNID">
-      <span *ngIf="!frmRegistration.get('nomNID').valid && frmRegistration.get('nomNID').touched" class="text-danger">Invalide nid no</span>
-    </div>
-    <div class="col-4 form-group">
-      <label for="nomMobile">Mobile<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" formControlName="nomMobile">
-      <span *ngIf="!frmRegistration.get('nomMobile').valid && frmRegistration.get('nomMobile').touched" class="text-danger">Invalide mobile no</span>
-    </div>
+            <div class="col-4 form-group">
+              <label for="memberNamebn">Name [BN]</label>
+              <input type="text" class="form-control" placeholder="Member Name [BN]" formControlName="memberNameBN">
+            </div>
+            <div class="col-4 form-group">
+              <label for="fatherName">Father Name</label>
+              <input type="text" class="form-control" placeholder="Father Name" formControlName="fatherName">
+            </div>
+            <div class="col-4 form-group">
+              <label for="motherName">Mother Name</label>
+              <input type="text" class="form-control" placeholder="Mother Name" formControlName="motherName">
+            </div>
+            <div class="col-4 form-group">
+              <label for="dob">Date Of Birth</label>
+              <input type="text" (bsValueChange)="ageCalculation()" class="form-control" placeholder="dd-MM-yyyy" formControlName="dob" bsDatepicker [bsConfig]="{ showTodayButton: true,dateInputFormat: 'DD-MM-YYYY' }">
+              <span class="badge badge-pill badge-info">{{age}}</span>
+            </div>
+            <div class="col-4 form-group">
+              <label for="gender">gender</label><br />
+              <div class="btn-group" btnRadioGroup formControlName="gender">
+                <label btnRadio="Male" class="btn btn-outline-primary">Male</label>
+                <label btnRadio="Female" class="btn btn-outline-primary">Female</label>
+              </div>
+            </div>
+            <div class="col-4 form-group">
+              <label for="maritStatus">Maritul Status</label><br>
+              <div class="btn-group" btnRadioGroup formControlName="maritStatus">
+                <label btnRadio="Single" class="btn btn-outline-success">Single</label>
+                <label btnRadio="Marride" class="btn btn-outline-success">Marride</label>
+              </div>
+            </div>
+            <div class="col-4 form-group">
+              <label for="spouseName">Spouse Name</label>
+              <input type="text" class="form-control" placeholder="Spouse Name" formControlName="spouseName">
+            </div>
+            <div class="col-4 form-group">
+              <label for="marageDate">Marage Date</label>
+              <input type="text" class="form-control" placeholder="dd-MM-yyyy" formControlName="marageDate" bsDatepicker [bsConfig]="{ showTodayButton: true,dateInputFormat: 'DD-MM-YYYY' }">
+            </div>
+            <div class="col-4 form-group">
+              <label for="bloodGroup">Blood Group</label><br />
+              <select class="form-control" formControlName="bloodGroup">
+                <option value="Unknown">--Select--</option>
+                <option value="A+">A positive (A+)</option>
+                <option value="A-">A negative (A-)</option>
+                <option value="B+">B positive (B+)</option>
+                <option value="B-">B negative (B-)</option>
+                <option value="O+">O positive (O+)</option>
+                <option value="O-">O negative (O-)</option>
+                <option value="AB+">AB positive (AB+)</option>
+                <option value="AB-">AB negative (AB-)</option>
+              </select>
+            </div>
 
-    <div class="col-12 form-group">
-      <button type="submit" class="btn btn-primary mr-2">Save</button>
-      <button type="reset" class="btn btn-primary">New</button>
-    </div>
+            <div class="col-4 form-group">
+              <label for="nid">NID<span class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="nid">
+              <span *ngIf="!frmRegistration.get('nid').valid && (frmRegistration.get('nid').touched||formSubmit)" class="text-danger">Invalide nid no</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div>
+            <button type="button" disabled class="btn btn-info btn-sm"><i class="fas fa-backward"></i></button>
+            <button type="button" [disabled]="!frmRegistration.get('nid').valid || !frmRegistration.get('memberNameEN').valid || !frmRegistration.get('appFee').valid || !frmRegistration.get('memberCode').valid || !frmRegistration.get('appDate').valid" (click)="selectTab(1)" class="btn btn-info btn-sm" style="float: right;"><i class="fas fa-forward"></i></button>
+          </div>
+        </div>
+      </div>
+
+    </tab>
+    <tab heading="Contact Information">
+      <div class="card" style="height: 544px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4 form-group">
+              <label for="mobile">Mobile No<span class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="mobile">
+              <span *ngIf="!frmRegistration.get('mobile').valid && (frmRegistration.get('mobile').touched||formSubmit)" class="text-danger">Invalide mobile no</span>
+            </div>
+            <div class="col-4 form-group">
+              <label for="email">Email<span class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="email">
+              <span *ngIf="!frmRegistration.get('email').valid && (frmRegistration.get('email').touched||formSubmit)" class="text-danger">Invalide email</span>
+            </div>
+            <div class="col-4 form-group">
+              <label for="emergencyPhone">Emergency Phone No</label>
+              <input type="text" class="form-control" formControlName="emergencyPhone">
+              <span *ngIf="(frmRegistration.get('emergencyPhone').touched)" class="text-danger">Invalide phone no</span>
+            </div>
+            <div class="col-12 form-group">
+              <label for="presenAddress">Present Address</label>
+              <textarea class="form-control" formControlName="presenAddress"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12"><strong>Parmanent Address</strong></div>
+            <div class="col-4 form-group">
+              <label for="presenAddress">Village</label>
+              <input type="text" class="form-control" formControlName="presenAddress">
+            </div>
+            <div class="col-4 form-group">
+              <label for="parmPost">Post Office</label>
+              <input type="text" class="form-control" formControlName="parmPost">
+            </div>
+            <div class="col-4 form-group">
+              <label for="parmPostCode">Post Code</label>
+              <input type="text" class="form-control" formControlName="parmPostCode">
+            </div>
+            <div class="col-4 form-group">
+              <label for="parmPS">Police Station</label>
+              <input type="text" class="form-control" formControlName="parmPS">
+            </div>
+            <div class="col-4 form-group">
+              <label for="parmDist">District</label>
+              <input type="text" class="form-control" formControlName="parmDist">
+            </div>
+            <div class="col-4 form-group">
+              <label for="parmDiv">Division</label>
+              <input type="text" class="form-control" formControlName="parmDiv">
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div>
+            <button type="button" (click)="selectTab(0)" class="btn btn-info btn-sm"><i class="fas fa-backward"></i></button>
+            <button type="button" [disabled]="!frmRegistration.get('mobile').valid || !frmRegistration.get('email').valid" (click)="selectTab(2)" class="btn btn-info btn-sm" style="float: right;"><i class="fas fa-forward"></i></button>
+          </div>
+        </div>
+      </div>
+  </tab>
+    <tab heading="Professional Information">
+      <div class="card" style="height: 544px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4 form-group">
+              <label for="profession">Profession</label>
+              <input type="text" class="form-control" formControlName="profession">
+            </div>
+            <div class="col-4 form-group">
+              <label for="desig">Designation</label>
+              <input type="text" class="form-control" formControlName="desig">
+            </div>
+            <div class="col-4 form-group">
+              <label for="offcMobile">Office Mobile</label>
+              <input type="text" class="form-control" formControlName="offcMobile">
+            </div>
+            <div class="col-12 form-group">
+              <label for="officAdd">Office Address</label>
+              <textarea class="form-control" formControlName="officAdd"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div>
+            <button type="button" (click)="selectTab(1)" class="btn btn-info btn-sm"><i class="fas fa-backward"></i></button>
+            <button type="button" (click)="selectTab(3)" class="btn btn-info btn-sm" style="float: right;"><i class="fas fa-forward"></i></button>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Reference & Nominee">
+      <div class="card" style="height: 544px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+            <div class="card">
+              <div class="card-header">Reference</div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 form-group">
+                    <label for="refName">Name</label>
+                    <input type="text" class="form-control" formControlName="refName">
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="refMobile">Mobile</label>
+                    <input type="text" class="form-control" formControlName="refMobile">
+                    <span *ngIf="(frmRegistration.get('refMobile').touched)" class="text-danger">Invalide mobile no</span>
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="refAddress">Address</label>
+                    <textarea class="form-control" formControlName="refAddress"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="col-6">
+              <div class="card">
+                <div class="card-header">Nominee</div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 form-group">
+                      <label for="nomName">Name<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="nomName">
+                      <span *ngIf="!frmRegistration.get('nomName').valid && (frmRegistration.get('nomName').touched||formSubmit)" class="text-danger">Invalide name</span>
+                    </div>
+                    <div class="col-12 form-group">
+                      <label for="nomMobile">Mobile<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="nomMobile">
+                      <span *ngIf="!frmRegistration.get('nomMobile').valid && (frmRegistration.get('nomMobile').touched||formSubmit)" class="text-danger">Invalide mobile no</span>
+                    </div>
+                    <div class="col-12 form-group">
+                      <label for="nomNID">NID<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="nomNID">
+                      <span *ngIf="!frmRegistration.get('nomNID').valid && (frmRegistration.get('nomNID').touched||formSubmit)" class="text-danger">Invalide nid no</span>
+                    </div>
+
+                    <div class="col-12 form-group">
+                      <label for="nomRel">Relation</label>
+                      <input type="text" class="form-control" formControlName="nomRel">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div>
+            <button type="button" (click)="selectTab(2)" class="btn btn-info btn-sm"><i class="fas fa-backward"></i></button>
+            <button type="button" [disabled]="!frmRegistration.get('nomName').valid || !frmRegistration.get('nomMobile').valid || !frmRegistration.get('nomNID').valid" (click)="selectTab(4)" class="btn btn-info btn-sm" style="float: right;"><i class="fas fa-forward"></i></button>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Uploade">
+      <div class="card" style="height: 544px;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+            <div class="card">
+              <div class="card-header">Member</div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 form-group">
+                    <div class="form-group">
+                      <label for="file">Image</label>
+                      <input
+                          formControlName="memberPic"
+                          id="file"
+                          type="file"
+                          class="form-control"
+                          (change)="onFileChange($event)">
+                      <!-- <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                          <div *ngIf="f.file.errors.required">File is required.</div>
+                      </div> -->
+                  </div>
+                  <img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:80px">
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="memberNID">NID</label>
+                    <input type="file" class="form-control" formControlName="memberNID">
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="col-6">
+              <div class="card">
+                <div class="card-header">Nominee</div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 form-group">
+                      <label for="nomineefPic">Picture/Image</label>
+                      <input type="file" class="form-control" formControlName="nomineefPic">
+                    </div>
+                    <div class="col-12 form-group">
+                      <label for="nomineeNID">NID</label>
+                      <input type="file" class="form-control" formControlName="nomineeNID">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div>
+            <button type="button" (click)="selectTab(3)" class="btn btn-info btn-sm mr-2"><i class="fas fa-backward"></i></button>
+              <button type="submit" class="btn btn-success btn-sm mr-2"><i class="fas fa-hdd"></i>&nbsp;Save</button>
+              <button type="reset" class="btn btn-danger btn-sm"><i class="fas fa-refresh"></i>&nbsp;New</button>
+
+            <button type="button" disabled class="btn btn-info btn-sm" style="float: right;"><i class="fas fa-forward"></i></button>
+          </div>
+        </div>
+      </div>
+    </tab>
+
+  </tabset>
+</div>
+    <div>
+
   </div>
 </form>
 </div>
