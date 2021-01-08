@@ -20,6 +20,9 @@ export class MemberListComponentComponent implements OnInit {
         console.log(error);
       }
     );
+
+    console.log('api');
+    this.memberService.getAllMemberApi().subscribe(data=>{console.log(data);});
   }
 
 }
