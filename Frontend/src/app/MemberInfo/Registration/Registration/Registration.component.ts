@@ -12,6 +12,9 @@ export class RegistrationComponent implements OnInit {
   frmRegistration:FormGroup;
   age:string;
   imageSrc: string;
+  imageNomSrc: string;
+  imageMemNIDSrc: string;
+  imageNomNIDSrc: string;
   formSubmit:boolean=false;
   constructor() { }
 
@@ -64,19 +67,20 @@ export class RegistrationComponent implements OnInit {
   get f(){
     return this.frmRegistration.controls;
   }
-
+//#region File Change
   onFileChange(event) {
     const reader = new FileReader();
 
     if(event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
+      console.log(event);
+      const file = <File>event.target.files[0];
+
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-        console.log('Acchived');
         this.imageSrc = reader.result as string;
         this.frmRegistration.patchValue({
-          memberPicSource: reader.result
+          fileSource: reader.result
         });
 
       };
@@ -84,10 +88,76 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  onFileNomChange(event) {
+    const reader = new FileReader();
+
+    if(event.target.files && event.target.files.length) {
+      console.log(event);
+      const file = <File>event.target.files[0];
+
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.imageNomSrc = reader.result as string;
+        this.frmRegistration.patchValue({
+          fileSource: reader.result
+        });
+
+      };
+
+    }
+  }
+
+  onMemNIDChange(event) {
+    const reader = new FileReader();
+
+    if(event.target.files && event.target.files.length) {
+      console.log(event);
+      const file = <File>event.target.files[0];
+
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.imageMemNIDSrc = reader.result as string;
+        this.frmRegistration.patchValue({
+          fileSource: reader.result
+        });
+
+      };
+
+    }
+  }
+
+  onFileNomNIDChange(event) {
+    const reader = new FileReader();
+
+    if(event.target.files && event.target.files.length) {
+      console.log(event);
+      const file = <File>event.target.files[0];
+
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.imageNomNIDSrc = reader.result as string;
+        this.frmRegistration.patchValue({
+          fileSource: reader.result
+        });
+
+      };
+
+    }
+  }
+
+//#endregion
+
   onSubmit(){
     this.formSubmit=true;
     if(this.frmRegistration.valid){
-      sessionStorage.setItem("member",JSON.stringify(this.frmRegistration.value))
+      sessionStorage.setItem("member",JSON.stringify(this.frmRegistration.value));
+      sessionStorage.setItem("memberPicSource",this.imageNomNIDSrc);
+      sessionStorage.setItem("memberNID",this.imageSrc);
+      sessionStorage.setItem("nomineefPic",this.imageMemNIDSrc);
+      sessionStorage.setItem("nomineeNID",this.imageNomSrc);
       alertify.success('Form Submit Success');
     }else{
       alertify.error('Form Submit Error');
@@ -95,9 +165,12 @@ export class RegistrationComponent implements OnInit {
 
     console.log(this.frmRegistration.value);
   }
+
   selectTab(tabId: number) {
     this.staticTabs.tabs[tabId].active = true;
   }
+
+
   ageCalculation(){
 
     this.age=this.frmRegistration.get('dob').value;
