@@ -8,7 +8,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
   export class MemberService {
-
+    uri : "/api/WzpdclApi?apiKey=wzpdcl";
+    request : {
+        withCredentials: true,
+        headers: { 'Content-Type': undefined }
+      }
   constructor(private http:HttpClient) { }
   public getAllMember():Observable<IMember[]>{
     return this.http.get('Data/Member.json').pipe(
@@ -28,7 +32,7 @@ import { Observable } from 'rxjs';
   }
 
   public getAllMemberApi():Observable<any[]>{
-    return this.http.get('https://localhost:5001/WeatherForecast').pipe(
+    return this.http.get('https://localhost:5001/api/memberapi/member').pipe(
       map(
         data=>{
           const apiData:any[]=[];
@@ -43,5 +47,22 @@ import { Observable } from 'rxjs';
 
     );
   }
+
+  // public RegisterMemberApi():Observable<any[]>{
+  //   return this.http.post('https://localhost:5001/api/memberapi/member').pipe(
+  //     map(
+  //       data=>{
+  //         const apiData:any[]=[];
+  //         for (let i in data) {
+  //         if(data.hasOwnProperty(i)){
+  //           apiData.push(data[i]);
+  //         }
+  //         }
+  //         return apiData;
+  //       }
+  //     )
+
+  //   );
+  // }
 
 }

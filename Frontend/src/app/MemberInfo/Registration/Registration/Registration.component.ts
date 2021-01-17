@@ -73,9 +73,8 @@ export class RegistrationComponent implements OnInit {
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-
+        console.log('Acchived');
         this.imageSrc = reader.result as string;
-
         this.frmRegistration.patchValue({
           memberPicSource: reader.result
         });

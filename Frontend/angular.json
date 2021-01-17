@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "COOPWebAPP"
+    }
+  },
+  "defaultProject": "COOPWebAPP",
+  "cli": {
+    "analytics": "ad05ca8a-850e-4b62-8ee0-53aa6e186d42"
+  }
 }
