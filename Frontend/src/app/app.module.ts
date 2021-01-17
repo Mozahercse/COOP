@@ -7,6 +7,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+// import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import {RegistrationComponent} from'./MemberInfo/Registration/Registration/Regis
    ],
   imports: [
     BrowserModule,
+    // ImageCropperModule,
     AppRoutingModule,
     FormsModule,ReactiveFormsModule,
     HttpClientModule,
